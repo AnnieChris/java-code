@@ -5,15 +5,16 @@ import java.util.Scanner;
 public class NumberOfDaysInMonth {
 
 	public static void main(String[] args) {
-		try (// TODO Auto-generated method stub
+		
+		try (
 		Scanner input = new Scanner(System.in)) {
 			int numberOfDaysInMonth = 0; 
 			String MonthName = "Unknown";
 
-			System.out.print("Input a month number: ");
+			System.out.print("Enter the Number of Month: ");
 			int month = input.nextInt();
 
-			System.out.print("Input a year: ");
+			System.out.print("Enter the year: ");
 			int year = input.nextInt();
 
 			switch (month) {
@@ -69,7 +70,7 @@ public class NumberOfDaysInMonth {
 			    	MonthName = "December";
 			        numberOfDaysInMonth = 31;
 			}
-			System.out.print(MonthName + " " + year + " has " + numberOfDaysInMonth + " days\n");
+			System.out.print(MonthName + " " + year + " has " + numberOfDaysInMonth + " days");
 		}
         
 	}
