@@ -42,6 +42,18 @@ public class MyClass {
 		Person p3 = new Person(190, 95);
 		System.out.println(p3.getPersonInfo());
 		
+		try {
+			if(p1.weight()>75) {
+				throw new MyException("Weight should be less than 75 in this category");
+				
+			}
+		}
+		catch(MyException e) {
+			System.out.println(e.getMessage());
+		}
+		finally {
+			sysout("Finally block always execute");
+		}
 	}
 }
 
