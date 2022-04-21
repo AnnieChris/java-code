@@ -42,8 +42,7 @@ public class CollectionDemo
 		names.add("Gen");
 		names.add("Zak");*/
 		
-		
-		
+				
 		
 		studentSet.add(stud1);
 		studentSet.add(stud2);
