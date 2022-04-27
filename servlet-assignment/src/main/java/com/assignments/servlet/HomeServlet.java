@@ -3,6 +3,7 @@ package com.assignments.servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -41,47 +42,62 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		RequestDispatcher rd;
+		UserProfile user = new UserProfile();
 		try {
-		System.out.println("Inside doGet Method");
+			System.out.println("Inside doGet Method");
 
-		String userName = request.getParameter("uname");
+			String userName = request.getParameter("uname");
 
-		String password = request.getParameter("pwd");
-Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		
-		//String url = "jdbc:sqlserver://localhost:\\mars_new";
-		
-		String url = "jdbc:sqlserver://localhost:1433;"+
-		"databaseName=mars_new;" +
-		"encrypt=true;trustServerCertificate=true";
-		
-		//String user = "sa";
-		
-		//String password = "jesus";
-		
-		Connection con = DriverManager.getConnection(url, userName, password);
-		
-		String query = "select * from product";
-		
-		Statement stmt = con.createStatement();
-		
-		ResultSet rs = stmt.executeQuery(query);
-		
-		while(rs.next()) 
+			String password = request.getParameter("pwd");
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+			String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=Login_Form;"
+					+ "encrypt=true;trustServerCertificate=true";
+
+			String db_user = "sa";
+
+			String db_password = "jesus";
+
+			Connection con = DriverManager.getConnection(url, db_user, db_password);
+
+			String query = "select Email_Id,Date_of_Birth,Contact,Address  from User_Login_Details WHERE UserName=? and Password=?";
+
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+
+			preparedStmt.setString(1, userName);
+			preparedStmt.setString(2, password);
+			
+			ResultSet resultSet = preparedStmt.executeQuery();
+
+			boolean loginSuccess = false;
+			while (resultSet.next()) 
+			{
+				loginSuccess = true;
+				user = new UserProfile();
+				user.setAddress(resultSet.getString("Address"));
+				user.setEmail(resultSet.getString("Email_Id"));
+				user.setContact(resultSet.getString("Contact"));
+				user.setDateOfBirth(resultSet.getDate("Date_of_Birth"));
+				user.setUsername(userName);
+				
+				System.out.println("Logged in user email :" + resultSet.getString("Email_Id"));
+			}
+			if (loginSuccess) 
+			{
+				request.setAttribute("user", user);
+				rd = request.getRequestDispatcher("success.jsp");
+			} else 
+			{
+				request.setAttribute("userName", userName);
+				rd = request.getRequestDispatcher("invalidlogin.jsp");
+			}
+
+			request.setAttribute("userName", userName);
+
+			rd.forward(request, response);
+		} catch (Exception ex) 
 		{
-			System.out.println("Prod_name:"+rs.getString("prod_name"));
-			System.out.println("Prod_desc:"+rs.getString("prod_desc"));
-			System.out.println("Prod_pric:"+rs.getDouble("price"));
-		}
-		
-
-		request.setAttribute("userName", userName);
-
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-
-		rd.forward(request, response);
-		}
-		catch(Exception ex) {
 			ex.printStackTrace();
 		}
 

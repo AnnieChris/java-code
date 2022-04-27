@@ -4,6 +4,16 @@
   <artifactId>servlet-assignment</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  
+  <dependencies>
+		<dependency>
+		    <groupId>com.microsoft.sqlserver</groupId>
+		    <artifactId>mssql-jdbc</artifactId>
+		    <version>10.2.0.jre11</version>
+		</dependency>
+
+  </dependencies>
+  
   <build>
     <plugins>
       <plugin>
@@ -20,12 +30,5 @@
     </plugins>
   </build>
   
-  <dependencies>
-		<dependency>
-		    <groupId>com.microsoft.sqlserver</groupId>
-		    <artifactId>mssql-jdbc</artifactId>
-		    <version>10.2.0.jre11</version>
-		</dependency>
-
-  </dependencies>
+  
 </project>

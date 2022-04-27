@@ -54,19 +54,26 @@ public class HomeServlet extends HttpServlet {
 		//request.setAttribute("userName", name);
 		
 		String userName = request.getParameter("uname");
-		String password = request.getParameter("pwd");
 		
+		String password = request.getParameter("pwd");
 		
 		HomeService service = new HomeService();
 		
-		if(service.validateUser(userName, password))
-		{
-			request.setAttribute("userName", username);
+		if(service.validateUser(userName, password)) {
+		
+		request.setAttribute("userName", userName);
+		
+		RequestDispatcher rd =request.getRequestDispatcher("home.jsp");
+		
+		rd.forward(request, response);
 		}
 		else
 		{
+			RequestDispatcher rd =request.getRequestDispatcher("failure.jsp");
 			
+			rd.forward(request, response);
 		}
+		
 		
 		
 		/*

@@ -1,4 +1,64 @@
 @charset "ISO-8859-1";
-h1 {
-	color:red;
+
+
+body{
+	background-color: #16518d !important;
+
+}
+body.success{background-color:#d3e3de !important;}
+body.invalid{background-color:#e1a8a8fa !important;}
+.loginform{
+	width:100%;
+	
+}
+.loginform h1{
+	text-align: center;
+    color: aliceblue;
+    text-transform: uppercase;
+	
+}
+
+form{
+	background-color: #b6c4c7;
+    width: 40%;
+    margin: auto;
+    padding: 40px;
+    border-radius: 15px;
+    display: grid;
+    box-shadow: 5px 5px 15px black;
+}
+
+.loginform input{
+	padding: 10px;
+}
+
+div.successpage h1{color: #056a6a; text-transform: capitalize;}
+div.successpage h2{font-size: x-large;}
+.invalidpage h1{color: #7c1111;}
+.invalidpage h2{color: brown; text-transform: capitalize;}
+
+ div.successpage table{
+    background-color: darkcyan;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+    
+
+    }
+    
+div.successpage td{
+	background-color: aliceblue;
+    padding: 10px;
+    margin: 10px;
+    display: inline-grid;
+    width: 15em;
+    box-shadow: 2px 2px 3px black;
+        text-align: center;
+}
+div.successpage caption{
+caption-side: top;
+text-transform: uppercase;
+    font-size: x-large;
+    text-align: center;
+    color: darkgreen;
 }

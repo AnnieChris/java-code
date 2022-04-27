@@ -7,10 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 /**
  * Servlet implementation class TestServlet
  */
-@WebServlet("/TestServlet")
+@WebServlet("/test")
 public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,12 +33,13 @@ public class TestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		String driverPath ="C:\\Users\\arunc\\Downloads\\chromedriver_win32\\chromedriver.exe";
 		System.setProperty("webdriver.chrome.driver",driverPath);
 		
 		WebDriver driver = new ChromeDriver();
 		
-		String url request.getParameter("url");
+		String url = request.getParameter("url");
 		
 		driver.navigate().to(url);
 		
